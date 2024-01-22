@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import WayToTech from "./components/WayToTech";
+import Button from "./components/Button/Button";
 import { ways } from "./data";
 
 export default function App() {
@@ -19,6 +20,8 @@ export default function App() {
         </section>
         <section>
           <h3>Another text for test</h3>
+
+          <Button />
         </section>
       </main>
     </div>
