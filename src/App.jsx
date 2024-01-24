@@ -1,11 +1,17 @@
 import Header from "./components/Header";
 import WayToTech from "./components/WayToTech";
 import Button from "./components/Button/Button";
+import { useState } from "react";
 import { ways } from "./data";
 
 export default function App() {
+  const [content, setContent] = useState("Нажми на кнопку");
+
+  //let content = "Нажми на кнопку";
+
   function handleClick(type) {
-    console.log("button", type);
+    setContent(type);
+    // content = type;
   }
   return (
     <div>
@@ -28,7 +34,7 @@ export default function App() {
           <Button onClick={() => handleClick("easy")}>Доступность</Button>
           <Button onClick={() => handleClick("program")}>Концентрация</Button>
 
-          <p>Нажми на кнопку</p>
+          <p>{content}</p>
         </section>
       </main>
     </div>
