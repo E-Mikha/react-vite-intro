@@ -2,16 +2,13 @@ import Header from "./components/Header";
 import WayToTech from "./components/WayToTech";
 import Button from "./components/Button/Button";
 import { useState } from "react";
-import { ways } from "./data";
+import { ways, differences } from "./data";
 
 export default function App() {
-  const [content, setContent] = useState("Нажми на кнопку");
-
-  //let content = "Нажми на кнопку";
+  const [contentType, setContentType] = useState(null);
 
   function handleClick(type) {
-    setContent(type);
-    // content = type;
+    setContentType(type);
   }
   return (
     <div>
@@ -30,11 +27,33 @@ export default function App() {
         <section>
           <h3>Another text for test</h3>
 
-          <Button onClick={() => handleClick("way")}>Подход</Button>
-          <Button onClick={() => handleClick("easy")}>Доступность</Button>
-          <Button onClick={() => handleClick("program")}>Концентрация</Button>
+          <Button
+            isActive={contentType === "way"}
+            onClick={() => handleClick("way")}
+          >
+            Подход
+          </Button>
+          <Button
+            isActive={contentType === "easy"}
+            onClick={() => handleClick("easy")}
+          >
+            Доступность
+          </Button>
+          <Button
+            isActive={contentType === "program"}
+            onClick={() => handleClick("program")}
+          >
+            Концентрация
+          </Button>
 
-          <p>{content}</p>
+          {/* {contentType ? (
+            <p>{differences[contentType]}</p>
+          ) : (
+            <p>Нажми на кнопку</p>
+          )} */}
+
+          {!contentType && <p>Нажми на кнопку</p>}
+          {contentType && <p>{differences[contentType]}</p>}
         </section>
       </main>
     </div>
