@@ -18,10 +18,9 @@ export default function App() {
           <h3>Our text for test</h3>
 
           <ul>
-            <WayToTech {...ways[0]} />
-            <WayToTech {...ways[1]} />
-            <WayToTech {...ways[2]} />
-            <WayToTech {...ways[3]} />
+            {ways.map((way) => (
+              <WayToTech key={way.title} {...way} />
+            ))}
           </ul>
         </section>
         <section>
