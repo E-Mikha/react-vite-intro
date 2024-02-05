@@ -1,4 +1,4 @@
-export default function FunctionIntroSection() {
+export default function IntroSection() {
   return (
     <section>
       <h1 className="centered">Result University</h1>
