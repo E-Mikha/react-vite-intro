@@ -11,9 +11,16 @@ export default function FeedbackSection() {
     setHasError(event.target.value.trim().length === 0);
   }
 
+  function toggleError() {
+    setHasError((prev) => !prev);
+    setHasError((prev) => !prev);
+  }
+
   return (
     <section>
       <h3>Обратная связь</h3>
+
+      <Button onClick={toggleError}>Toggle Error</Button>
 
       <form>
         <label htmlFor="name">Ваше имя</label>
@@ -46,7 +53,9 @@ export default function FeedbackSection() {
           Reason: {reason}
         </pre>
 
-        <Button disabled={hasError}>Отправить</Button>
+        <Button disabled={hasError} isActive={!hasError}>
+          Отправить
+        </Button>
       </form>
     </section>
   );
