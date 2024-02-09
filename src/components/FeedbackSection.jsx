@@ -1,9 +1,32 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Button from "./Button/Button";
+
+function StateVsRef() {
+  const input = useRef();
+  const [show, setShow] = useState(false);
+
+  function handleKeyDown(event) {
+    if (event.key === "Enter") {
+      setShow(true);
+    }
+  }
+
+  return (
+    <div>
+      <h3>Input value: {show && input.current.value}</h3>
+      <input
+        ref={input}
+        type="text"
+        onKeyDown={handleKeyDown}
+        className="control"
+      />
+    </div>
+  );
+}
 
 export default function FeedbackSection() {
   const [name, setName] = useState("");
-  const [hasError, setHasError] = useState(true);
+  const [hasError, setHasError] = useState(false);
   const [reason, setReason] = useState("help");
 
   function handleNameChange(event) {
@@ -11,18 +34,18 @@ export default function FeedbackSection() {
     setHasError(event.target.value.trim().length === 0);
   }
 
-  function toggleError() {
-    setHasError((prev) => !prev);
-    setHasError((prev) => !prev);
-  }
+  // function toggleError() {
+  //   setHasError((prev) => !prev);
+  //   setHasError((prev) => !prev);
+  // }
 
   return (
     <section>
       <h3>Обратная связь</h3>
 
-      <Button onClick={toggleError}>Toggle Error</Button>
+      {/* <Button onClick={toggleError}>Toggle Error</Button> */}
 
-      <form>
+      <form style={{ marginBottom: "1rem" }}>
         <label htmlFor="name">Ваше имя</label>
         <input
           type="text"
@@ -47,16 +70,17 @@ export default function FeedbackSection() {
           <option value="suggest">Предложение</option>
         </select>
 
-        <pre>
+        {/* <pre>
           Name: {name}
           <br />
           Reason: {reason}
-        </pre>
+        </pre> */}
 
         <Button disabled={hasError} isActive={!hasError}>
           Отправить
         </Button>
       </form>
+      <StateVsRef />
     </section>
   );
 }
