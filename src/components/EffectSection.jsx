@@ -1,8 +1,13 @@
+import { useState } from "react";
 import Button from "./Button/Button";
 import Modal from "./Modal/Modal";
 
 export default function EffectSection() {
-  function openModal() {}
+  const [modal, setModal] = useState(false);
+
+  function openModal() {
+    setModal(true);
+  }
 
   return (
     <section>
@@ -10,7 +15,7 @@ export default function EffectSection() {
 
       <Button onClick={openModal}>Открыть информацию</Button>
 
-      <Modal>
+      <Modal open={modal}>
         <h3>Hello from Modal</h3>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita
@@ -18,6 +23,7 @@ export default function EffectSection() {
           alias aperiam, necessitatibus quo numquam saepe asperiores tenetur!
           Fugiat, sapiente quis. Sed, veniam?
         </p>
+        <Button onClick={() => setModal(false)}>Close modal</Button>
       </Modal>
     </section>
   );
